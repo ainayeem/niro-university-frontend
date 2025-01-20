@@ -34,15 +34,16 @@ const Login = () => {
       };
 
       const res = await login(userInfo).unwrap();
+      console.log("🚀 ~ onSubmit ~ res:", res);
 
       const user = verifyToken(res.data.accessToken) as TUser;
 
       dispatch(setUser({ user: user, token: res.data.accessToken }));
-      toast.success("Logged in!", { id: toastId, duration: 3000 });
+      toast.success(res.message, { id: toastId, duration: 3000 });
       navigate(`/${user.role}/dashboard`);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
-      toast.error("Something went wrong!", { id: toastId });
+      toast.error("Not found!", { id: toastId });
     }
   };
   return (
