@@ -11,11 +11,10 @@ import { TResponse } from "../../../types";
 
 const CreateAcademicDepartment = () => {
   const { data: academicFacultiesData } = useGetAllAcademicFacultiesQuery(undefined);
-  const academicFacultyOptions =
-    academicFacultiesData?.data?.map(({ _id, name }) => ({
-      value: _id,
-      label: name,
-    })) || [];
+  const academicFacultyOptions = academicFacultiesData?.data?.map(({ _id, name }) => ({
+    value: _id,
+    label: name,
+  }));
 
   const [addAcademicDepartment] = useAddAcademicDepartmentMutation();
 

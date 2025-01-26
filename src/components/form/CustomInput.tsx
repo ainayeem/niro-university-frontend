@@ -9,7 +9,7 @@ type TCustomInputProps = {
 
 const CustomInput = ({ type, name, label }: TCustomInputProps) => {
   return (
-    <div style={{ marginBottom: "20px", display: "flex" }}>
+    <div style={{ marginBottom: "20px" }}>
       {/* {label ? label : null} */}
       {label && <label htmlFor={name}>{label}</label>}
       {/* <Controller name={name} render={({ field, fieldState: {error} }) => <Input {...field} type={type} id={name} />} /> */}
