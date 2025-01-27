@@ -12,15 +12,14 @@ import { verifyToken } from "../utils/verifyToken";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  // const { register, handleSubmit } = useForm({
-  //   defaultValues: {
-  //     userId: "A-0001",
-  //     password: "admin123",
-  //   },
-  // });
+
+  // const defaultValues = {
+  //   userId: "A-0001",
+  //   password: "admin123",
+  // };
   const defaultValues = {
-    userId: "A-0001",
-    password: "admin123",
+    userId: "2025010001",
+    password: "1234",
   };
   const [login] = useLoginMutation();
 
@@ -40,8 +39,12 @@ const Login = () => {
 
       dispatch(setUser({ user: user, token: res.data.accessToken }));
       toast.success(res.message, { id: toastId, duration: 3000 });
-      navigate(`/${user.role}/dashboard`);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+      if (res.data.needsPasswordChange) {
+        navigate(`/change-password`);
+      } else {
+        navigate(`/${user.role}/dashboard`);
+      }
     } catch (err) {
       toast.error("Not found!", { id: toastId });
     }
